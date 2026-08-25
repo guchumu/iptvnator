@@ -5,7 +5,11 @@
     cdkDragPreviewContainer="parent"
     [class.selected]="isSelected()"
     [class.is-busy]="isBusy()"
+    tabindex="0"
+    data-tv-focus
+    data-tv-group="playlists"
     (click)="onPlaylistClick()"
+    (keydown.enter)="onPlaylistClick()"
 >
     @if (isDraggable()) {
         <mat-icon cdkDragHandle class="drag-icon">drag_indicator</mat-icon>

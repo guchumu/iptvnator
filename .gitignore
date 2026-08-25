@@ -97,6 +97,15 @@ vendor/embedded-mpv/*/lib/
 vendor/embedded-mpv/*/notices/
 vendor/embedded-mpv/*/runtime-manifest.json
 
+# Capacitor / sideload APK (CI regenerates native/android)
+native/node_modules/
+native/package-lock.json
+native/android/
+native/ios/
+*.apk
+*.aab
+
 # MemPalace per-project files (issue #185)
 mempalace.yaml
 entities.json
+

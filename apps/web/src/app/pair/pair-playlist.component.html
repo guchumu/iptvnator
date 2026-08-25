@@ -1,0 +1,107 @@
+<div class="pair-page">
+    <form class="pair-card" (submit)="$event.preventDefault(); submit()">
+        <h1>{{ 'PAIR.TITLE' | translate }}</h1>
+        <p class="pair-sub">{{ 'PAIR.SUBTITLE' | translate }}</p>
+
+        @if (message()) {
+            <p class="pair-msg pair-msg--ok">{{ message() }}</p>
+        }
+        @if (error()) {
+            <p class="pair-msg pair-msg--err">{{ error() }}</p>
+        }
+
+        <label for="pair-device">{{ 'PAIR.DEVICE_ID' | translate }}</label>
+        <input
+            id="pair-device"
+            name="deviceId"
+            [(ngModel)]="deviceId"
+            (blur)="formatDeviceId()"
+            maxlength="8"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+        />
+
+        <label for="pair-name">{{ 'PAIR.LIST_NAME' | translate }}</label>
+        <input id="pair-name" name="listName" [(ngModel)]="listName" maxlength="64" />
+
+        <label for="pair-server">{{ 'PAIR.XTREAM_SERVER' | translate }}</label>
+        <input
+            id="pair-server"
+            name="serverUrl"
+            [(ngModel)]="serverUrl"
+            autocomplete="off"
+        />
+        <label for="pair-user">{{ 'PAIR.USERNAME' | translate }}</label>
+        <input id="pair-user" name="username" [(ngModel)]="username" autocomplete="username" />
+        <label for="pair-pass">{{ 'PAIR.PASSWORD' | translate }}</label>
+        <input
+            id="pair-pass"
+            name="password"
+            type="password"
+            [(ngModel)]="password"
+            autocomplete="current-password"
+        />
+
+        <p class="pair-or">{{ 'PAIR.OR_M3U' | translate }}</p>
+
+        <label for="pair-m3u">{{ 'PAIR.M3U_URL' | translate }}</label>
+        <input id="pair-m3u" name="m3uUrl" [(ngModel)]="m3uUrl" autocomplete="off" />
+
+        <button type="submit" [disabled]="sending()">
+            {{ 'PAIR.SUBMIT' | translate }}
+        </button>
+    </form>
+
+    @if (infinitv(); as tv) {
+        <section class="pair-card pair-infinitv" aria-label="InfiniTV login">
+            <h2>{{ 'PAIR.INFINITV_TITLE' | translate }}</h2>
+            <p class="pair-sub">{{ 'PAIR.INFINITV_BODY' | translate }}</p>
+            <p class="pair-infinitv-mode">
+                {{
+                    (tv.mode === 'm3u'
+                        ? 'PAIR.INFINITV_MODE_M3U'
+                        : 'PAIR.INFINITV_MODE_XTREAM'
+                    ) | translate
+                }}
+            </p>
+            <label>{{ 'PAIR.INFINITV_SERVER' | translate }}</label>
+            <div class="pair-copy-row">
+                <code>{{ tv.serverUrl }}</code>
+                <button
+                    type="button"
+                    (click)="copyField('server', tv.serverUrl)"
+                >
+                    {{ 'PAIR.COPY' | translate }}
+                </button>
+            </div>
+            @if (tv.mode === 'xtream') {
+                <label>{{ 'PAIR.USERNAME' | translate }}</label>
+                <div class="pair-copy-row">
+                    <code>{{ tv.username }}</code>
+                    <button
+                        type="button"
+                        (click)="copyField('user', tv.username)"
+                    >
+                        {{ 'PAIR.COPY' | translate }}
+                    </button>
+                </div>
+                <label>{{ 'PAIR.PASSWORD' | translate }}</label>
+                <div class="pair-copy-row">
+                    <code>{{ tv.password }}</code>
+                    <button
+                        type="button"
+                        (click)="copyField('pass', tv.password)"
+                    >
+                        {{ 'PAIR.COPY' | translate }}
+                    </button>
+                </div>
+            }
+            @if (copied()) {
+                <p class="pair-msg pair-msg--ok">
+                    {{ 'PAIR.COPIED' | translate }}
+                </p>
+            }
+        </section>
+    }
+</div>

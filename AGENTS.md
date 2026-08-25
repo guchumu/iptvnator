@@ -152,6 +152,15 @@ agent-browser connect ws://127.0.0.1:9222/devtools/page/<iptvnator-page-id>
 agent-browser screenshot /tmp/iptvnator-cdp.png
 ```
 
+## Android TV
+
+Install the Capacitor APK (`native/`, GitHub workflow `APK Android TV`), scan
+the QR on the TV, send the playlist from the phone (`/pair`). The APK loads
+`https://acortador.vip/iptvnator/` — that URL must serve the Docker PWA.
+10-foot layout: `html.is-tv`, `TvRemoteService`, `docs/architecture/android-tv.md`.
+Optional InfiniTV copy fields on `/pair` are not the recommended path; do not
+vendor InfiniTV (GPL-3.0) into this MIT tree.
+
 ## Radio / Audio Player
 
 M3U playlists can contain radio channels identified by the `radio="true"` attribute on `#EXTINF` lines. When a radio channel is selected:

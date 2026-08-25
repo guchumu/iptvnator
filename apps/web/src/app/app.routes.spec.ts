@@ -3,6 +3,7 @@ import { SettingsStore } from '@iptvnator/services';
 
 describe('app routes', () => {
     let workspaceRoute: import('@angular/router').Route | undefined;
+    let pairRoute: import('@angular/router').Route | undefined;
     let workspaceChildren: Array<{
         canActivate?: unknown[];
         data?: Record<string, unknown>;
@@ -56,6 +57,7 @@ describe('app routes', () => {
         const appRoutes = await import('./app.routes');
         const { routes } = appRoutes;
         workspaceRoute = routes.find((route) => route.path === 'workspace');
+        pairRoute = routes.find((route) => route.path === 'pair');
         workspaceChildren = workspaceRoute?.children ?? [];
         resolveElectronOnlyGlobalSearchRoute =
             appRoutes.resolveElectronOnlyGlobalSearchRoute;
@@ -65,6 +67,10 @@ describe('app routes', () => {
 
     afterEach(() => {
         TestBed.resetTestingModule();
+    });
+
+    it('exposes the public /pair playlist upload route', () => {
+        expect(pairRoute?.loadComponent).toEqual(expect.any(Function));
     });
 
     it('waits for settings before activating workspace children', async () => {

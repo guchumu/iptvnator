@@ -1,5 +1,7 @@
 <div
     class="playlist-switcher-trigger"
+    data-tv-focus
+    data-tv-group="header"
     [class.is-open]="isMenuOpen()"
     matRipple
     [matRippleDisabled]="false"
@@ -133,6 +135,8 @@
         @for (playlist of filteredPlaylists(); track playlist._id) {
             <div
                 class="playlist-item"
+                data-tv-focus
+                data-tv-group="switcher"
                 [class.selected]="isSelected(playlist)"
                 (click)="selectPlaylist(playlist)"
             >

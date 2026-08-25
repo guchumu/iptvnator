@@ -36,6 +36,14 @@ By default the app is available at <http://localhost:4333>. No additional
 environment variables, backend repository checkout, or separate backend
 container are required for the default local deployment.
 
+## Android TV
+
+Install the IPTVnator APK, scan the QR on the TV, send the list from the
+phone. The APK loads `https://acortador.vip/iptvnator/` — this image is what
+you must publish at that path. Details:
+[`docs/architecture/android-tv.md`](../docs/architecture/android-tv.md) and
+[`native/README.md`](../native/README.md).
+
 ## Build The Image
 
 ```bash

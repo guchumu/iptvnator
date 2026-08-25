@@ -1,0 +1,29 @@
+@if (visible()) {
+    <section
+        class="remote-pair"
+        [class.remote-pair--compact]="compact()"
+        aria-label="Remote playlist pairing"
+    >
+        <div class="remote-pair__qr">
+            <qrcode
+                [qrdata]="pairUrl()"
+                [width]="compact() ? 120 : 196"
+                errorCorrectionLevel="M"
+            ></qrcode>
+        </div>
+        <div class="remote-pair__copy">
+            <p class="remote-pair__lead">
+                {{ 'HOME.PLAYLISTS.REMOTE_PAIR_SCAN' | translate }}
+            </p>
+            <p class="remote-pair__hint">
+                {{ 'HOME.PLAYLISTS.REMOTE_PAIR_BODY' | translate }}
+            </p>
+            <p class="remote-pair__label">
+                {{ 'HOME.PLAYLISTS.REMOTE_PAIR_DEVICE_ID' | translate }}
+            </p>
+            <p class="remote-pair__id">{{ deviceId() }}</p>
+            <p class="remote-pair__url">{{ pairUrl() }}</p>
+            <p class="tv-remote-hint">{{ 'TV.REMOTE_HINT' | translate }}</p>
+        </div>
+    </section>
+}

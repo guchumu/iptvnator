@@ -57,6 +57,13 @@ const recordingsCapabilityGuard = () => {
 
 export const routes: Routes = [
     {
+        path: 'pair',
+        loadComponent: () =>
+            import('./pair/pair-playlist.component').then(
+                (c) => c.PairPlaylistComponent
+            ),
+    },
+    {
         path: '',
         pathMatch: 'full',
         redirectTo: 'workspace',

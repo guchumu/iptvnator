@@ -11,5 +11,19 @@ declare global {
         electron: ElectronBridgeApi;
         process: NodeJS.Process;
         require: NodeRequire;
+        Capacitor?: {
+            isNativePlatform?: () => boolean;
+            isNative?: boolean;
+            Plugins?: {
+                NativePlayer?: {
+                    play?: (options: Record<string, unknown>) => Promise<unknown>;
+                    stop?: () => Promise<unknown>;
+                    addListener?: (
+                        event: string,
+                        cb: (ev: unknown) => void
+                    ) => void;
+                };
+            };
+        };
     }
 }

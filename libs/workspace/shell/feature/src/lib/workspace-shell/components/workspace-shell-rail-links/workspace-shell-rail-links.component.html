@@ -2,6 +2,8 @@
     @for (link of links(); track link.path.join('/')) {
         <a
             class="portal-rail-link nav-item"
+            data-tv-focus
+            data-tv-group="rail"
             [routerLink]="link.path"
             [routerLinkActive]="activeClass()"
             [routerLinkActiveOptions]="{ exact: link.exact ?? false }"

@@ -278,6 +278,7 @@ describe('VideoPlayerComponent — M3U movie recognition gate', () => {
         fixture.detectChanges();
 
         expect(component.showMovieDetail()).toBe(false);
+        expect(component.shouldShowInlinePlayer(liveChannel)).toBe(true);
         expect(
             fixture.nativeElement.querySelector('app-m3u-vod-detail')
         ).toBeNull();

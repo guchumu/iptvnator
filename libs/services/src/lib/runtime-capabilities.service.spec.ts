@@ -37,6 +37,7 @@ describe('RuntimeCapabilitiesService', () => {
         expect(service.supportsRemoteControl).toBe(false);
         expect(service.supportsXtreamSectionNavigation).toBe(true);
         expect(service.supportsEpgImport).toBe(false);
+        expect(service.isTv).toBe(false);
         expect(service.supportsEpgProgress).toBe(false);
         expect(service.supportsEpgProgramLookup).toBe(false);
         expect(service.supportsEpgCurrentProgramBatch).toBe(false);
@@ -45,6 +46,16 @@ describe('RuntimeCapabilitiesService', () => {
         expect(service.supportsEpgDataManagement).toBe(false);
         expect(service.supportsEpgChannelBrowser).toBe(false);
         expect(service.supportsEpgProgramSearch).toBe(false);
+    });
+
+    it('reports TV layout from the html.is-tv class', () => {
+        testWindow.electron = undefined;
+        document.documentElement.classList.add('is-tv');
+        try {
+            expect(new RuntimeCapabilitiesService().isTv).toBe(true);
+        } finally {
+            document.documentElement.classList.remove('is-tv');
+        }
     });
 
     it('reports Electron capabilities from the available preload bridge methods', () => {

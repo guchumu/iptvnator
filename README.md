@@ -67,6 +67,9 @@ The application is a cross-platform, open-source project built with Electron and
 - Cross-platform desktop (Electron) and installable PWA
 - Desktop auto-updater and mobile remote control _(desktop)_
 - Docker self-hosting for the PWA + web backend
+- Android TV / Fire Stick / Streamer: install the IPTVnator APK, scan the QR
+  on the TV, send the playlist from the phone (`native/README.md`,
+  `docs/architecture/android-tv.md`)
 - 19 languages ([translation files](apps/web/src/assets/i18n/)), light & dark themes, and keyboard shortcuts
 
 ## Keyboard shortcuts
@@ -133,6 +136,12 @@ EPG/XMLTV panels, Embedded MPV, managed MPV/VLC launching, the download manager,
 and Electron remote-control features are not available there. If browser
 playback fails, copy the stream URL and open it manually in an external player
 such as MPV, VLC, or IINA.
+
+On Android TV, Fire Stick, or Google Streamer, install the IPTVnator APK
+and send the playlist from your phone (QR / device code). The APK loads
+`https://acortador.vip/iptvnator/` — put the Docker PWA there. Details:
+[`docs/architecture/android-tv.md`](./docs/architecture/android-tv.md) and
+[`native/README.md`](./native/README.md).
 
 ## Download
 

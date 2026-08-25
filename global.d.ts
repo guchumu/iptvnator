@@ -21,6 +21,36 @@ declare global {
         electron: ElectronBridgeApi;
         process: NodeJS.Process;
         require: NodeRequire;
+        StreamBoxNative?: {
+            isTv?: boolean;
+            hasExo?: boolean;
+            hasVlc?: boolean;
+            engine?: string;
+            versionName?: string;
+        };
+        Capacitor?: {
+            isNativePlatform?: () => boolean;
+            isNative?: boolean;
+            Plugins?: {
+                NativePlayer?: {
+                    play?: (options: {
+                        url: string;
+                        title?: string;
+                        mime?: string;
+                        fullscreen?: boolean;
+                    }) => Promise<unknown>;
+                    stop?: () => Promise<unknown>;
+                    setFullscreen?: (options: {
+                        fullscreen: boolean;
+                    }) => Promise<unknown>;
+                    layout?: (options: Record<string, number>) => Promise<unknown>;
+                    addListener?: (
+                        event: string,
+                        cb: (ev: unknown) => void
+                    ) => void;
+                };
+            };
+        };
     }
 
     /** Download item from the database */

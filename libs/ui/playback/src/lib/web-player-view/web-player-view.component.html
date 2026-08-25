@@ -1,3 +1,12 @@
+@if (usesNativeTvPlayer()) {
+    <div class="tv-native-stage" role="status">
+        <p class="tv-native-stage__kicker">LibVLC</p>
+        <p class="tv-native-stage__title">
+            {{ resolvedMediaTitle()?.primary || title() }}
+        </p>
+    </div>
+}
+
 @for (application of renderedApplications(); track application.token) {
     @if (application.binding; as binding) {
         @if (binding.target === 'videojs') {

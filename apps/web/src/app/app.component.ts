@@ -32,6 +32,8 @@ import {
 import { SettingsService } from './services/settings.service';
 import { PlaybackKeepAwakeService } from './services/playback-keep-awake.service';
 import { PlaylistOpenRequestService } from './services/playlist-open-request.service';
+import { RemotePlaylistImportService } from './services/remote-playlist-import.service';
+import { TvRemoteService } from './services/tv-remote.service';
 import { AppUpdateNotificationPanelComponent } from './app-update-notification-panel.component';
 
 const debugAppComponent = createDevLogger('AppComponent');
@@ -68,6 +70,8 @@ export class AppComponent implements OnInit {
     private runtime = inject(RuntimeCapabilitiesService);
     private readonly workspaceShellActions = inject(WORKSPACE_SHELL_ACTIONS);
     private readonly contextDrawer = inject(WorkspaceShellContextDrawerService);
+    private readonly remotePlaylistImport = inject(RemotePlaylistImportService);
+    private readonly tvRemote = inject(TvRemoteService);
 
     /** Default language as fallback */
     private readonly DEFAULT_LANG = Language.ENGLISH;
@@ -88,6 +92,7 @@ export class AppComponent implements OnInit {
         // Keep the display awake while a built-in player is playing video
         // (Electron powerSaveBlocker / PWA Screen Wake Lock, issue #1095).
         this.playbackKeepAwake.start();
+        this.tvRemote.start();
 
         effect(() => {
             const size = this.settingsStore.coverSize?.() ?? 'medium';
@@ -118,6 +123,7 @@ export class AppComponent implements OnInit {
 
         this.initSettings();
         this.triggerAutoUpdatePlaylists();
+        this.remotePlaylistImport.start();
     }
 
     /**

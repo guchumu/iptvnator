@@ -72,6 +72,8 @@ The current self-hosted PWA uses these `apps/web-backend` routes:
 - `GET /parse?targetId=<id>`
 - `GET /xtream?targetId=<id>&username=<u>&password=<p>&action=<action>`
 - `GET /stalker?targetId=<id>&macAddress=<mac>&action=<action>`
+- `GET|POST /pair/:deviceId` and `GET|POST /api/pair/:deviceId` (in-memory
+  remote playlist pairing; phone form at `/pair`)
 
 The PWA continues to use `PwaService`; only the backend base URL is resolved at
 runtime. Electron routes remain owned by the Electron backend and preload
@@ -127,6 +129,13 @@ these limitations explicit in UI, troubleshooting, and release notes:
   manager flows, or Electron remote-control features. If inline browser
   playback fails, the supported browser fallback is copying the stream URL and
   opening it manually in an external player.
+
+Android TV, Fire Stick, and Google Streamer: install the IPTVnator APK, then
+send a playlist from the phone (QR / device code). The APK loads
+`https://acortador.vip/iptvnator/` — publish this PWA there. The same PWA also
+runs in the TV browser (`html.is-tv`). See
+[`docs/architecture/android-tv.md`](./android-tv.md) and
+[`native/README.md`](../../native/README.md).
 
 Provider URLs are registered before proxy calls so the proxy endpoints do not
 accept raw target URLs in query strings. Registration validates the target URL

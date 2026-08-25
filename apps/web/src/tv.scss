@@ -1,0 +1,162 @@
+// 10-foot cinematic TV shell (Android TV, Fire Stick, Google Streamer).
+// Inspired by Extreme InfiniTV's slate + cyan look — original CSS, not a copy.
+// Classes are applied in main.ts via applyTvLayoutClasses().
+
+html.is-tv {
+    --tv-bg: #070b14;
+    --tv-surface: #0c1220;
+    --tv-raised: #121a2b;
+    --tv-accent: #38bdf8;
+    --tv-accent-soft: rgba(56, 189, 248, 0.22);
+    --tv-text: #f1f5f9;
+    --tv-muted: #94a3b8;
+    --tv-overscan: 3vh;
+    color-scheme: dark;
+}
+
+html.is-tv,
+html.is-tv body {
+    font-size: 20px;
+    background: var(--tv-bg);
+    color: var(--tv-text);
+}
+
+html.is-tv body {
+    padding: var(--tv-overscan) 2.4vw;
+    box-sizing: border-box;
+}
+
+html.is-native-tv,
+html.is-native-tv body {
+    cursor: none;
+}
+
+html.is-tv .search-field,
+html.is-tv .shortcuts-trigger,
+html.is-tv .command-trigger,
+html.is-tv .playlist-item .action-buttons,
+html.is-tv .channel-list-item .action-buttons,
+html.is-tv .sidebar-collapse-toggle,
+html.is-tv .sidebar-restore,
+html.is-tv .drag-icon,
+html.is-tv .context-drawer-toggle,
+html.is-tv .window-controls,
+html.is-tv app-window-controls {
+    display: none !important;
+}
+
+html.is-tv .workspace-shell {
+    background: radial-gradient(120% 90% at 0% 0%, #102033 0%, var(--tv-bg) 42%);
+}
+
+html.is-tv app-workspace-shell-rail {
+    background: linear-gradient(180deg, #0a1220, #070b14);
+    border-right: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+html.is-tv .portal-rail-link {
+    min-height: 64px;
+    border-radius: 16px;
+    margin: 6px 8px;
+}
+
+html.is-tv .workspace-header {
+    min-height: 80px;
+    background: transparent;
+    box-shadow: none;
+}
+
+html.is-tv .playlist-item,
+html.is-tv .channel-list-item,
+html.is-tv .nav-item.group-nav-item,
+html.is-tv .source-card__cta,
+html.is-tv .welcome-dashboard__cta,
+html.is-tv .portal-rail-link,
+html.is-tv .playlist-switcher-trigger,
+html.is-tv [data-tv-focus] {
+    min-height: 60px;
+}
+
+html.is-tv .channel-list-item {
+    min-height: 76px;
+    font-size: 1.08rem;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--tv-raised) 78%, transparent);
+}
+
+html.is-tv .playlist-item {
+    min-height: 84px;
+    padding-block: 14px;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--tv-raised) 70%, transparent);
+}
+
+html.is-tv [data-tv-focus] {
+    outline: 3px solid transparent;
+    outline-offset: 4px;
+    transition:
+        outline-color 0.14s ease,
+        box-shadow 0.14s ease,
+        transform 0.14s ease,
+        background-color 0.14s ease;
+}
+
+html.is-tv [data-tv-focus]:focus,
+html.is-tv [data-tv-focus].tv-focused,
+html.is-tv [data-tv-focus]:focus-visible {
+    outline-color: var(--tv-accent);
+    background: color-mix(in srgb, var(--tv-accent) 10%, var(--tv-raised));
+    box-shadow:
+        0 0 0 3px var(--tv-accent-soft),
+        0 18px 40px rgba(0, 0, 0, 0.45);
+    transform: scale(1.045);
+    z-index: 2;
+}
+
+html.is-tv .epg {
+    display: none;
+}
+
+html.is-tv .tv-remote-hint {
+    display: block;
+    margin: 8px 0 0;
+    color: var(--tv-muted);
+    font-size: 0.95rem;
+}
+
+html:not(.is-tv) .tv-remote-hint {
+    display: none;
+}
+
+html.is-tv .remote-pair {
+    max-width: 720px;
+    padding: 28px 32px;
+    border-radius: 24px;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    background:
+        linear-gradient(160deg, rgba(56, 189, 248, 0.16), rgba(7, 11, 20, 0.55)),
+        var(--tv-surface);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+html.is-tv .remote-pair__qr qrcode,
+html.is-tv .remote-pair__qr {
+    transform: scale(1.12);
+    transform-origin: top left;
+}
+
+html.is-tv .remote-pair__id {
+    font-size: 2.1rem;
+    letter-spacing: 0.18em;
+    color: var(--tv-accent);
+}
+
+html.is-tv .header-actions--leading .mat-mdc-icon-button {
+    width: 56px;
+    height: 56px;
+}
+
+html.is-tv .mat-mdc-button-base,
+html.is-tv .mdc-button {
+    letter-spacing: 0.02em;
+}

@@ -21,6 +21,7 @@ import {
     PlaybackPositionService,
     PlaylistDeleteActionService,
     PlaylistRefreshService,
+    RemotePlaylistPairService,
     RuntimeCapabilitiesService,
     SortBy,
     SortOrder,
@@ -202,6 +203,14 @@ describe('RecentPlaylistsComponent busy state', () => {
                 {
                     provide: RuntimeCapabilitiesService,
                     useValue: runtime,
+                },
+                {
+                    provide: RemotePlaylistPairService,
+                    useValue: {
+                        deviceId: signal('AB-12-CD'),
+                        pairUrl: signal('http://localhost/pair?id=AB-12-CD'),
+                        isAvailable: signal(false),
+                    },
                 },
                 {
                     provide: PlaylistContextFacade,

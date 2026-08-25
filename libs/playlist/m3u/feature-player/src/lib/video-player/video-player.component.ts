@@ -581,6 +581,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     });
 
     constructor() {
+        if (this.runtime.isTv) {
+            this.liveSidebarState.set('expanded');
+        }
+
         // React to settings changes
         effect(() => {
             this.playerSettings = {

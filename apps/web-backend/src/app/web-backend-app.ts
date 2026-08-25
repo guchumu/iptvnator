@@ -1,5 +1,5 @@
 import cors from 'cors';
-import express, { Express, Request, Response } from 'express';
+import express, { Express, Request, RequestHandler, Response } from 'express';
 import { createHash } from 'node:crypto';
 import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
@@ -32,6 +32,10 @@ import {
     normalizeProviderError,
     ProviderError,
 } from './provider-error';
+import {
+    createRemotePlaylistPairStore,
+    RemotePlaylistPairStore,
+} from './remote-playlist-pair';
 
 export interface WebBackendHttpGetOptions {
     readonly headers?: Record<string, string>;
@@ -126,6 +130,7 @@ export function createWebBackendApp(
         resolveHostname: options.resolveHostname ?? resolveHostname,
     };
     const providerTargets: ProviderTargetRegistry = new Map();
+    const pairStore = createRemotePlaylistPairStore();
 
     const corsMiddleware = cors({
         origin(origin, callback) {
@@ -146,6 +151,8 @@ export function createWebBackendApp(
     app.get('/health', (_req, res) =>
         res.json({ status: 'ok', service: 'iptvnator-web-backend' })
     );
+
+    registerRemotePlaylistPairRoutes(app, corsMiddleware, pairStore);
 
     app.get('/config.js', corsMiddleware, (_req, res) => {
         const config = JSON.stringify({ BACKEND_URL: runtimeBackendUrl });
@@ -839,4 +846,37 @@ function isPrivateOrReservedIpv6(address: string): boolean {
 
     const mappedIpv4 = normalized.match(/::ffff:(\d+\.\d+\.\d+\.\d+)$/)?.[1];
     return mappedIpv4 ? isPrivateOrReservedIpv4(mappedIpv4) : false;
+}
+
+function registerRemotePlaylistPairRoutes(
+    app: Express,
+    corsMiddleware: RequestHandler,
+    pairStore: RemotePlaylistPairStore
+): void {
+    const handleGet = (req: Request, res: Response) => {
+        res.json(pairStore.get(String(req.params['deviceId'] ?? '')));
+    };
+    const handlePost = (req: Request, res: Response) => {
+        const result = pairStore.put(
+            String(req.params['deviceId'] ?? ''),
+            req.body
+        );
+        if ('error' in result) {
+            res.status(result.status).json(result);
+            return;
+        }
+        res.json(result);
+    };
+    const jsonParser = express.json({ limit: '8kb' });
+
+    for (const prefix of ['/pair', '/api/pair']) {
+        app.options(`${prefix}/:deviceId`, corsMiddleware);
+        app.get(`${prefix}/:deviceId`, corsMiddleware, handleGet);
+        app.post(
+            `${prefix}/:deviceId`,
+            corsMiddleware,
+            jsonParser,
+            handlePost
+        );
+    }
 }

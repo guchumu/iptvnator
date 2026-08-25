@@ -54,6 +54,7 @@ import {
     type XtreamRefreshProgressReporter,
 } from '../xtream-refresh-flow.service';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
+import { RemotePlaylistPairPanelComponent } from '../remote-playlist-pair/remote-playlist-pair-panel.component';
 import type { PlaylistType } from '../add-playlist-menu/playlist-type';
 import { PlaylistInfoComponent } from './playlist-info/playlist-info.component';
 import { PlaylistItemComponent } from './playlist-item/playlist-item.component';
@@ -77,6 +78,7 @@ type PlaylistBusyOperation = {
         EmptyStateComponent,
         MatInputModule,
         PlaylistItemComponent,
+        RemotePlaylistPairPanelComponent,
     ],
 })
 export class RecentPlaylistsComponent {

@@ -6,6 +6,30 @@
     "SHOW_MORE": "Más",
     "SHOW_LESS": "Menos",
     "PLAYLISTS": "Listas de reproducción",
+    "PAIR": {
+        "TITLE": "Enviar lista a la TV",
+        "SUBTITLE": "Pega un enlace M3U o las credenciales Xtream y el Device ID de la tele (QR). La lista aparece en el stick. Los campos de InfiniTV abajo son opcionales.",
+        "DEVICE_ID": "Device ID de la tele",
+        "LIST_NAME": "Nombre de la lista (opcional)",
+        "XTREAM_SERVER": "Servidor Xtream Codes",
+        "USERNAME": "Usuario",
+        "PASSWORD": "Contraseña",
+        "OR_M3U": "— o si tienes lista M3U —",
+        "M3U_URL": "Enlace M3U directo",
+        "SUBMIT": "Enviar / preparar para la tele",
+        "SUCCESS": "Lista enviada. Aparecerá en la tele en unos segundos.",
+        "ERROR_DEVICE": "Introduce un Device ID válido (por ejemplo AB-12-CD).",
+        "ERROR_PAYLOAD": "Indica un enlace M3U o servidor, usuario y contraseña Xtream.",
+        "ERROR_NETWORK": "No se pudo contactar con el player. Comprueba que el móvil y la tele usen la misma dirección.",
+        "INFINITV_TITLE": "Inicio de sesión InfiniTV",
+        "INFINITV_BODY": "Pega estos datos en Extreme InfiniTV en el stick. Si es un M3U, pon la URL en Server URL y deja usuario y contraseña vacíos.",
+        "INFINITV_ONLY": "Listo para pegar en InfiniTV. Añade un Device ID si también quieres enviarlo a una tele con IPTVnator.",
+        "INFINITV_MODE_M3U": "Lista M3U — pega la URL en Server URL y deja usuario y contraseña vacíos.",
+        "INFINITV_MODE_XTREAM": "Xtream Codes — pega Server URL, usuario y contraseña en el login de InfiniTV.",
+        "INFINITV_SERVER": "Server URL",
+        "COPY": "Copiar",
+        "COPIED": "Copiado"
+    },
     "HOME": {
         "TITLE": "IPTVnator",
         "SUBTITLE": "Selecciona una lista de reproducción del listado o añade una nueva lista al cargar archivos o por una url",
@@ -46,6 +70,11 @@
             "FEATURE_OFFLINE_DESC": "Guarda películas y episodios para más tarde.",
             "SOURCES_WELCOME_TITLE": "Añade tu primera lista de reproducción",
             "SOURCES_WELCOME_BODY": "Elige un tipo de origen para empezar.",
+            "REMOTE_PAIR_SCAN": "Escanea el QR para cargar una lista",
+            "REMOTE_PAIR_BODY": "Con el móvil, abre la cámara y apunta al código, o escribe el Device ID en la página de carga.",
+            "REMOTE_PAIR_DEVICE_ID": "Device ID",
+            "REMOTE_PAIR_IMPORTED": "Lista recibida. Aparecerá en unos segundos.",
+            "REMOTE_PAIR_ALREADY": "Esa lista ya está en este dispositivo.",
             "SOURCE_M3U_NEEDS": "Archivo local o URL que apunte a una lista M3U/M3U8.",
             "SOURCE_M3U_ADD": "Añadir M3U",
             "SOURCE_XTREAM_NEEDS": "Nombre de usuario, contraseña y URL del servidor de tu proveedor.",
@@ -1635,5 +1664,9 @@
             "NO_ACCOUNT_DATA_TITLE": "Sin datos de la cuenta",
             "NO_ACCOUNT_DATA_DESCRIPTION": "Este portal no publica información de la cuenta para este dispositivo."
         }
+    },
+    "TV": {
+        "NATIVE_PLAYING": "Reproduciendo en el reproductor de la tele…",
+        "REMOTE_HINT": "Flechas para moverte, OK para reproducir, Atrás para volver."
     }
 }

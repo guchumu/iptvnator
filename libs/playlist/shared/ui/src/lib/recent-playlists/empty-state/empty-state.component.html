@@ -23,11 +23,14 @@
                     mat-raised-button
                     type="button"
                     class="welcome-dashboard__cta"
+                    data-tv-focus
+                    data-tv-group="welcome"
                     (click)="onAddPlaylist()"
                 >
                     <mat-icon>add_circle</mat-icon>
                     {{ 'HOME.PLAYLISTS.ADD_YOUR_FIRST' | translate }}
                 </button>
+                <app-remote-playlist-pair-panel />
             </div>
 
             <ul class="welcome-dashboard__cards" role="list">
@@ -55,6 +58,8 @@
                 <p class="welcome-sources__body">{{ 'HOME.PLAYLISTS.SOURCES_WELCOME_BODY' | translate }}</p>
             </header>
 
+            <app-remote-playlist-pair-panel />
+
             <div class="welcome-sources__grid">
                 @for (card of sourceCards; track card.type) {
                     <article class="source-card">
@@ -72,6 +77,8 @@
                             mat-raised-button
                             type="button"
                             class="source-card__cta"
+                            data-tv-focus
+                            data-tv-group="sources"
                             (click)="onAddPlaylist(card.type)"
                         >
                             <mat-icon>add</mat-icon>

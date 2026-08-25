@@ -1,8 +1,10 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { applyTvLayoutClasses } from '@iptvnator/services';
 import { registerAppDateLocales } from './app/app-date-locales';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
+applyTvLayoutClasses();
 registerAppDateLocales();
 
 bootstrapApplication(AppComponent, appConfig)

@@ -58,7 +58,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 IPTVnator is a cross-platform IPTV player application built with Angular and Electron, supporting M3U/M3U8 playlists, Xtream Codes API, and Stalker portals.
 
-**Dual Environment Support**: The application is designed to work in both Electron and as a Progressive Web App (PWA). The architecture uses a factory pattern to inject environment-specific services at runtime, ensuring the same codebase works in both contexts.
+**Dual Environment Support**: The application is designed to work in both Electron and as a Progressive Web App (PWA). The architecture uses a factory pattern to inject environment-specific services at runtime, ensuring the same codebase works in both contexts. Android TV / Fire Stick / Google Streamer use a Capacitor APK (`native/`) with a cinematic 10-foot PWA, QR pairing from the phone, and LibVLC in process `:vlc` (`docs/architecture/android-tv.md`). Extreme InfiniTV is a separate GPL app and must not be vendored here.
 
 ## Development Commands
 
@@ -300,6 +300,8 @@ This is an Nx monorepo with the following structure:
 - **apps/electron-backend-e2e** - Playwright E2E tests against the Electron app
 - **apps/stalker-mock-server** - Mock Stalker/Ministra portal for dev and E2E
 - **apps/xtream-mock-server** - Mock Xtream Codes API for dev and E2E
+- **native/** - Capacitor Android TV APK (`com.guchumu.iptvnator`) wrapping the
+  PWA at `https://acortador.vip/iptvnator/`; CI workflow `.github/workflows/android-tv.yml`
 - **apps/website** - Astro + Tailwind landing page and blog
 - **libs/** - Shared libraries:
     - **epg/data-access** - EPG services, runtime bridge, program normalization
@@ -737,6 +739,11 @@ This project uses modern Angular signal-based APIs and patterns. **ALWAYS** use 
 - M3U/M3U8 files (local or URL)
 - Xtream Codes API (`username`, `password`, `serverUrl`)
 - Stalker portal (`macAddress`, `url`)
+- Remote playlist pairing (PWA / TV APK): QR + device code on the TV, phone
+  form at `/pair` POSTs to `/api/pair/:deviceId`. Fire Stick / Android TV /
+  Google Streamer: sideload `iptvnator.apk` (`native/`, LibVLC in `:vlc`).
+  Details: `docs/architecture/android-tv.md`. InfiniTV field mapping on `/pair`
+  is optional for people who already use that GPL app — not the install path.
 
 **Stalker playback links**: `create_link` runs only when the catalog row sets
 `use_http_tmp_link` or `use_load_balancing`; otherwise the static `cmd` plays
@@ -1472,6 +1479,8 @@ IPTVnator supports both Electron (desktop app) and PWA (web browser) to provide 
 
 - **Electron**: Full-featured desktop experience with local database, external player support (MPV/VLC), and native file system access
 - **PWA**: Lightweight web version that runs in any browser without installation
+- **TV / APK**: 10-foot D-pad PWA (`html.is-tv`); Capacitor Android TV APK in
+  `native/` loads `https://acortador.vip/iptvnator/` (`docs/architecture/android-tv.md`)
 
 **Environment-Specific Behavior**:
 

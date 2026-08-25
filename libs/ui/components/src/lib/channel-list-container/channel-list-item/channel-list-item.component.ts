@@ -17,7 +17,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { TranslatePipe } from '@ngx-translate/core';
 import { EpgItemDescriptionComponent } from '@iptvnator/ui/epg';
 import { EpgProgram } from '@iptvnator/shared/interfaces';
-import { SettingsStore } from '@iptvnator/services';
+import { RuntimeCapabilitiesService, SettingsStore } from '@iptvnator/services';
 import { applyChannelNameStrip } from '@iptvnator/shared/m3u-utils';
 
 @Component({
@@ -39,6 +39,7 @@ export class ChannelListItemComponent {
     private readonly dialog = inject(MatDialog);
     private readonly logoFailed = signal(false);
     private readonly settingsStore = inject(SettingsStore);
+    private readonly runtime = inject(RuntimeCapabilitiesService);
 
     readonly isDraggable = input(false);
     readonly logo = input<string | null | undefined>('');
@@ -71,6 +72,9 @@ export class ChannelListItemComponent {
     readonly progressPercentage = input(0);
     readonly auxActionIcon = input('delete');
     readonly auxActionTooltip = input('');
+    readonly loadRemoteLogo = computed(
+        () => !!this.logo() && !this.runtime.isTv
+    );
 
     readonly clicked = output<void>();
     readonly activated = output<void>();
@@ -141,7 +145,7 @@ export class ChannelListItemComponent {
     }
 
     showLogoFallback(): boolean {
-        return !this.logo() || this.logoFailed();
+        return !this.loadRemoteLogo() || this.logoFailed();
     }
 
     onLogoError(event: Event): void {

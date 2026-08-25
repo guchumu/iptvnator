@@ -179,6 +179,27 @@ describe('ChannelListItemComponent', () => {
         expect(fixture.nativeElement.querySelector('.channel-logo')).toBeNull();
     });
 
+    it('does not request remote logos on the 10-foot TV layout', () => {
+        document.documentElement.classList.add('is-tv');
+        try {
+            fixture.componentRef.setInput('name', 'News');
+            fixture.componentRef.setInput(
+                'logo',
+                'https://example.test/news.png'
+            );
+            fixture.detectChanges();
+
+            expect(
+                fixture.nativeElement.querySelector('.channel-logo')
+            ).toBeNull();
+            expect(
+                fixture.nativeElement.querySelector('.channel-logo-fallback')
+            ).not.toBeNull();
+        } finally {
+            document.documentElement.classList.remove('is-tv');
+        }
+    });
+
     it('emits clicked on a single click by default', () => {
         const clicked = jest.fn();
         fixture.componentInstance.clicked.subscribe(clicked);

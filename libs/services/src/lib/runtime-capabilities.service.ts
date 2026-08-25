@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ElectronBridgeApi } from '@iptvnator/shared/interfaces';
+import { isTvLayout } from './tv-runtime';
 
 export type RuntimeEnvironment = 'electron' | 'pwa';
 
@@ -32,6 +33,17 @@ export class RuntimeCapabilitiesService {
 
     get isPwa(): boolean {
         return !this.isElectron;
+    }
+
+    /**
+     * 10-foot TV shell (Android TV, Fire Stick, Google Streamer). Driven by
+     * `html.is-tv`, which `applyTvLayoutClasses()` sets before bootstrap.
+     */
+    get isTv(): boolean {
+        if (typeof document === 'undefined') {
+            return false;
+        }
+        return isTvLayout(document);
     }
 
     get platform(): string | undefined {

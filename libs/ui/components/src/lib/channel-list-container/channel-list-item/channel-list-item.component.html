@@ -5,7 +5,11 @@
     [cdkDragDisabled]="!isDraggable()"
     cdkDragPreviewContainer="parent"
     [class.active]="selected()"
+    tabindex="0"
+    data-tv-focus
+    data-tv-group="channels"
     (click)="onClick($event)"
+    (keydown.enter)="onClick($event)"
     (dblclick)="onDoubleClick()"
     (contextmenu)="onContextMenu($event)"
     data-test-id="channel-item"
@@ -18,7 +22,7 @@
             @if (showLogoFallback()) {
                 <mat-icon class="channel-logo-fallback">live_tv</mat-icon>
             }
-            @if (logo()) {
+            @if (loadRemoteLogo()) {
                 <img
                     class="channel-logo"
                     [src]="logo()"

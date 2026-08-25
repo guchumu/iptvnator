@@ -1,0 +1,25 @@
+{
+  "appId": "com.guchumu.iptvnator",
+  "appName": "IPTVnator",
+  "webDir": "www",
+  "backgroundColor": "#070b14",
+  "server": {
+    "url": "https://acortador.vip/iptvnator/",
+    "cleartext": true,
+    "allowNavigation": [
+      "acortador.vip",
+      "*.acortador.vip"
+    ]
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#070b14",
+    "webContentsDebuggingEnabled": false,
+    "captureInput": false
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "preferredContentMode": "mobile",
+    "allowsLinkPreview": false
+  }
+}

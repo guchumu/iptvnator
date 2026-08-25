@@ -131,7 +131,12 @@
             "AUTO_REFRESH_UPDATE_PARTIAL_WITH_SKIPPED": "播放列表自动刷新未完成：{{total}} 个播放列表中已更新 {{updated}} 个，{{failed}} 个失败，跳过 {{skipped}} 个（没有 URL 或文件路径）。",
             "AUTO_REFRESH_UPDATE_FAILED": "播放列表自动刷新失败。{{total}} 个播放列表均未更新。",
             "AUTO_REFRESH_UPDATE_SKIPPED": "播放列表自动刷新：{{total}} 个中已更新 {{updated}} 个，跳过 {{skipped}} 个（没有 URL 或文件路径）。",
-            "AUTO_REFRESH_ENABLED": "已启用自动刷新"
+            "AUTO_REFRESH_ENABLED": "已启用自动刷新",
+            "REMOTE_PAIR_SCAN": "Scan the QR code to load a playlist",
+            "REMOTE_PAIR_BODY": "On your phone, open the camera and point it at the code — or type the device ID on the pair page.",
+            "REMOTE_PAIR_DEVICE_ID": "Device ID",
+            "REMOTE_PAIR_IMPORTED": "Playlist received. It will appear in a few seconds.",
+            "REMOTE_PAIR_ALREADY": "That playlist is already on this device."
         },
         "ADD_PLAYLIST": {
             "PICK_METHOD": "选择您想要的连接方式。稍后可以重命名。",
@@ -1635,5 +1640,33 @@
             "NO_ACCOUNT_DATA_TITLE": "无账户数据",
             "NO_ACCOUNT_DATA_DESCRIPTION": "该门户不为此设备提供账户信息。"
         }
+    },
+    "PAIR": {
+        "TITLE": "Send playlist to TV",
+        "SUBTITLE": "Paste an M3U URL or Xtream credentials. The TV with this device ID will load it automatically.",
+        "DEVICE_ID": "Device ID (shown on the TV)",
+        "LIST_NAME": "Playlist name (optional)",
+        "XTREAM_SERVER": "Xtream Codes server",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "OR_M3U": "— or if you have an M3U URL —",
+        "M3U_URL": "Direct M3U link",
+        "SUBMIT": "Send to device",
+        "SUCCESS": "Playlist sent. It will appear on the TV in a few seconds.",
+        "ERROR_DEVICE": "Enter a valid device ID (for example AB-12-CD).",
+        "ERROR_PAYLOAD": "Provide an M3U URL or Xtream server, username and password.",
+        "ERROR_NETWORK": "Could not reach the player. Check that the phone and TV use the same address.",
+        "INFINITV_TITLE": "InfiniTV login",
+        "INFINITV_BODY": "Paste these into Extreme InfiniTV on the stick. For an M3U URL, put it in Server URL and leave username and password empty.",
+        "INFINITV_ONLY": "Ready to paste into InfiniTV. Add a device ID if you also want to send this to an IPTVnator TV.",
+        "INFINITV_MODE_M3U": "M3U playlist — paste the URL into Server URL and leave username and password empty.",
+        "INFINITV_MODE_XTREAM": "Xtream Codes — paste Server URL, username, and password into InfiniTV login.",
+        "INFINITV_SERVER": "Server URL",
+        "COPY": "Copy",
+        "COPIED": "Copied"
+    },
+    "TV": {
+        "NATIVE_PLAYING": "Playing on the TV player…",
+        "REMOTE_HINT": "Use the arrows to move, OK to play, Back to return."
     }
 }

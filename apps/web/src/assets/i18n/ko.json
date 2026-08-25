@@ -131,7 +131,12 @@
             "AUTO_REFRESH_UPDATE_PARTIAL_WITH_SKIPPED": "재생목록 자동 새로 고침이 완료되지 않았습니다. {{total}}개 중 {{updated}}개를 업데이트했고 {{failed}}개가 실패했으며 {{skipped}}개를 건너뛰었습니다(URL 또는 파일 경로 없음).",
             "AUTO_REFRESH_UPDATE_FAILED": "재생목록 자동 새로 고침에 실패했습니다. {{total}}개의 재생목록을 모두 업데이트하지 못했습니다.",
             "AUTO_REFRESH_UPDATE_SKIPPED": "재생목록 자동 새로 고침: {{total}}개 중 {{updated}}개를 업데이트하고 {{skipped}}개를 건너뛰었습니다(URL 또는 파일 경로 없음).",
-            "AUTO_REFRESH_ENABLED": "자동 새로 고침 활성화됨"
+            "AUTO_REFRESH_ENABLED": "자동 새로 고침 활성화됨",
+            "REMOTE_PAIR_SCAN": "Scan the QR code to load a playlist",
+            "REMOTE_PAIR_BODY": "On your phone, open the camera and point it at the code — or type the device ID on the pair page.",
+            "REMOTE_PAIR_DEVICE_ID": "Device ID",
+            "REMOTE_PAIR_IMPORTED": "Playlist received. It will appear in a few seconds.",
+            "REMOTE_PAIR_ALREADY": "That playlist is already on this device."
         },
         "ADD_PLAYLIST": {
             "PICK_METHOD": "연결 방식을 선택하세요. 이름은 나중에 변경할 수 있습니다.",
@@ -1635,5 +1640,33 @@
             "NO_ACCOUNT_DATA_TITLE": "계정 정보 없음",
             "NO_ACCOUNT_DATA_DESCRIPTION": "이 포털은 이 기기에 대한 계정 정보를 제공하지 않습니다."
         }
+    },
+    "PAIR": {
+        "TITLE": "Send playlist to TV",
+        "SUBTITLE": "Paste an M3U URL or Xtream credentials. The TV with this device ID will load it automatically.",
+        "DEVICE_ID": "Device ID (shown on the TV)",
+        "LIST_NAME": "Playlist name (optional)",
+        "XTREAM_SERVER": "Xtream Codes server",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "OR_M3U": "— or if you have an M3U URL —",
+        "M3U_URL": "Direct M3U link",
+        "SUBMIT": "Send to device",
+        "SUCCESS": "Playlist sent. It will appear on the TV in a few seconds.",
+        "ERROR_DEVICE": "Enter a valid device ID (for example AB-12-CD).",
+        "ERROR_PAYLOAD": "Provide an M3U URL or Xtream server, username and password.",
+        "ERROR_NETWORK": "Could not reach the player. Check that the phone and TV use the same address.",
+        "INFINITV_TITLE": "InfiniTV login",
+        "INFINITV_BODY": "Paste these into Extreme InfiniTV on the stick. For an M3U URL, put it in Server URL and leave username and password empty.",
+        "INFINITV_ONLY": "Ready to paste into InfiniTV. Add a device ID if you also want to send this to an IPTVnator TV.",
+        "INFINITV_MODE_M3U": "M3U playlist — paste the URL into Server URL and leave username and password empty.",
+        "INFINITV_MODE_XTREAM": "Xtream Codes — paste Server URL, username, and password into InfiniTV login.",
+        "INFINITV_SERVER": "Server URL",
+        "COPY": "Copy",
+        "COPIED": "Copied"
+    },
+    "TV": {
+        "NATIVE_PLAYING": "Playing on the TV player…",
+        "REMOTE_HINT": "Use the arrows to move, OK to play, Back to return."
     }
 }

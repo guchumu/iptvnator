@@ -41,5 +41,8 @@
                 />
             }
         </div>
+        @if (!sidebarMode()) {
+            <app-remote-playlist-pair-panel [compact]="true" />
+        }
     }
 }

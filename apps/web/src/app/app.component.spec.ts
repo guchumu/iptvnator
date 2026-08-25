@@ -27,6 +27,8 @@ import {
 import { PlaylistActions } from '@iptvnator/m3u-state';
 import { AppComponent } from './app.component';
 import { ElectronServiceStub } from './services/electron.service.stub';
+import { RemotePlaylistImportService } from './services/remote-playlist-import.service';
+import { TvRemoteService } from './services/tv-remote.service';
 import { SettingsService } from './services/settings.service';
 
 jest.spyOn(global.console, 'error').mockImplementation(() => {
@@ -125,6 +127,12 @@ describe('AppComponent', () => {
                 },
                 MockProvider(MatSnackBar, {
                     open: jest.fn(),
+                }),
+                MockProvider(RemotePlaylistImportService, {
+                    start: jest.fn(),
+                }),
+                MockProvider(TvRemoteService, {
+                    start: jest.fn(),
                 }),
                 MockProvider(TranslateService, {
                     instant: jest.fn((key: string) => key),

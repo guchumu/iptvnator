@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 import type { PlaylistType } from '../../add-playlist-menu/playlist-type';
+import { RemotePlaylistPairPanelComponent } from '../../remote-playlist-pair/remote-playlist-pair-panel.component';
 
 export type EmptyStateType =
     | 'welcome-dashboard'
@@ -100,7 +101,7 @@ const SOURCE_CARDS: readonly SourceCard[] = [
         './empty-state.responsive.scss',
         './empty-state.themes.scss',
     ],
-    imports: [MatButtonModule, MatIcon, TranslatePipe],
+    imports: [MatButtonModule, MatIcon, RemotePlaylistPairPanelComponent, TranslatePipe],
 })
 export class EmptyStateComponent {
     readonly type = input.required<EmptyStateType>();

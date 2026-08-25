@@ -4,5 +4,6 @@ export * from './lib/recent-playlists/playlist-info/playlist-info.component';
 export * from './lib/recent-playlists/playlist-info/stalker-playlist-connection-editor.token';
 export * from './lib/recent-playlists/recent-playlists.component';
 export * from './lib/recent-playlists/empty-state/empty-state.component';
+export * from './lib/remote-playlist-pair/remote-playlist-pair-panel.component';
 export * from './lib/playlist-refresh-action.service';
 export * from './lib/xtream-refresh-flow.service';

@@ -18,7 +18,11 @@ import {
     type PlaybackRecommendationTarget,
 } from '@iptvnator/playback/util';
 import { PORTAL_EXTERNAL_PLAYBACK } from '@iptvnator/portal/shared/util';
-import { RuntimeCapabilitiesService, SettingsStore } from '@iptvnator/services';
+import {
+    NativeTvPlayerService,
+    RuntimeCapabilitiesService,
+    SettingsStore,
+} from '@iptvnator/services';
 import {
     VideoPlayer,
     type Channel,
@@ -88,6 +92,7 @@ function resolveWebPlayerSharedControls(): boolean {
 })
 export class WebPlayerViewComponent implements OnDestroy {
     private readonly runtime = inject(RuntimeCapabilitiesService);
+    private readonly nativeTv = inject(NativeTvPlayerService);
     private readonly settingsStore = inject(SettingsStore);
     private readonly externalPlayback = inject(PORTAL_EXTERNAL_PLAYBACK, {
         optional: true,
@@ -221,9 +226,15 @@ export class WebPlayerViewComponent implements OnDestroy {
     get supportsManagedExternalPlayers(): boolean {
         return this.runtime.supportsManagedExternalPlayers;
     }
+    readonly usesNativeTvPlayer = computed(() =>
+        this.nativeTv.shouldPlay(this.resolvedPlayback())
+    );
     readonly renderedApplications = computed<
         readonly PlaybackApplicationOwnership[]
     >(() => {
+        if (this.usesNativeTvPlayer()) {
+            return [];
+        }
         const binding = this.activeBinding();
         const embeddedMpv =
             this.selectedPlayer() === VideoPlayer.EmbeddedMpv && !binding;
@@ -265,6 +276,13 @@ export class WebPlayerViewComponent implements OnDestroy {
             this.channel = undefined;
             this.vjsOptions = undefined;
             this.recovery.clearDiagnostic();
+            if (this.nativeTv.shouldPlay(playback)) {
+                this.applicationHandoff.release();
+                this.recoverySession.clearPlaybackBinding();
+                void this.nativeTv.playFromPlayback(playback);
+                return;
+            }
+            void this.nativeTv.stop();
             if (target === null) {
                 this.applicationHandoff.release();
                 this.recoverySession.clearPlaybackBinding();
@@ -291,6 +309,7 @@ export class WebPlayerViewComponent implements OnDestroy {
     ngOnDestroy(): void {
         this.externalRecovery.destroy();
         this.applicationHandoff.destroy();
+        void this.nativeTv.stop();
     }
 
     handlePlaybackIssue(
