@@ -128,7 +128,7 @@ jobs:
           unzip -l iptvnator.apk | grep -Ei "exoplayer|media3|libvlc|VlcPlayer|PlayerActivity|StreamBoxPlugin" || true
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.apk.outputs.nombre }}
           path: iptvnator.apk
@@ -136,7 +136,7 @@ jobs:
 
       - name: Upload new signing key (save as IPTVNATOR_KEYSTORE_BASE64)
         if: steps.firma.outputs.generada == 'si'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: clave-de-firma-GUARDAR-COMO-SECRETO
           path: ${{ runner.temp }}/keystore-base64.txt
